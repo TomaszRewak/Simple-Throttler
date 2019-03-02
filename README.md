@@ -38,7 +38,8 @@ To be more specific:
 auto throttler = make_message_throttler<int, std::string>(
   4,
   std::chrono::milliseconds{ 1000 },
-  [&](const Message& message) { last_consumed_message = message; }
+  [&](const std::string& message) { std::cout << "Consumed: " << message << endl; }
+  [&](const std::string& message) { std::cout << "Disposed: " << message << endl; }
 );
 
 throttler.from(1).send("Hello");

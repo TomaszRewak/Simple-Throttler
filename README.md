@@ -5,6 +5,10 @@ This throttler supports sending messages from multiple users. Each user can send
 
 Basic usage:
 ```cpp
+#include "message_throttler_commons.hpp"
+
+...
+
 auto throttler = make_message_throttler<UserId, Message>(
   max_number_of_messages_per_user,
   sliding_window_width,
@@ -18,6 +22,10 @@ throttler.from(2).send("Message 3");
 ```
 or
 ```cpp
+#include "message_throttler_commons.hpp"
+
+...
+
 auto throttler = make_message_throttler<UserId, Message>(
   max_number_of_messages_per_user,
   sliding_window_width,

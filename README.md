@@ -4,7 +4,7 @@ A simple C++ throttler implementation.
 This throttler supports sending messages from multiple users. Each user can send only a certain number of messages within the period defined by the sliding window.
 
 Basic usage:
-```
+```cpp
 auto throttler = make_message_throttler<UserId, Message>(
   max_number_of_messages_per_user,
   sliding_window_width,
@@ -17,7 +17,7 @@ throttler.from(1).send("Message 2");
 throttler.from(2).send("Message 3");
 ```
 or
-```
+```cpp
 auto throttler = make_message_throttler<UserId, Message>(
   max_number_of_messages_per_user,
   sliding_window_width,
@@ -34,7 +34,7 @@ second_client_interface.send("Message 4");
 ```
 
 To be more specific:
-```
+```cpp
 auto throttler = make_message_throttler<int, std::string>(
   4,
   std::chrono::milliseconds{ 1000 },

@@ -7,7 +7,7 @@ Basic usage:
 ```
 auto throttler = make_message_throttler<UserId, Message>(
   max_number_of_messages_per_user,
-	sliding_window_width,
+  sliding_window_width,
   message_consumer
 );
 
@@ -20,7 +20,7 @@ or
 ```
 auto throttler = make_message_throttler<UserId, Message>(
   max_number_of_messages_per_user,
-	sliding_window_width,
+  sliding_window_width,
   message_consumer
 );
 

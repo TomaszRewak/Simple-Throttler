@@ -52,12 +52,10 @@ throttler.from(1).send("Hello");
 Properties:
 - I've separated single client interface from the main throttler. Thanks to this if one client wants to send multiple messages only one map lookup is required.
 - Throttler supports custom message types and client id types.
-- Complexity of the `send` method (of the client interface) is guaranteed to be O(1) no matter how long the sliding window is and how many messages are already registered in it. Also, after sending N (= sliding window size) messages the list of instructions performed to send [dispose] messages is the always the same (which should make it easy for branch prediction algorithm).
+- Complexity of the `send` method (of the client interface) is guaranteed to be O(1) no matter how long the sliding window is and how many messages are already registered in it. Also, after sending N (= sliding window size) messages the list of instructions performed to send [dispose] a message is always the same (which should make it easy for branch prediction algorithm).
 - `send` method (of the client interface) never allocates.
-- User can define his own data consumers (any collable functor is ok). He can also listen for discarded messages.
-- By default (defined in `message_throttler_commons.hpp`) throttler uses chrono for timestamping. This behavior can be overwritten with any custom timestamper and sliding window processor.
+- User can define his own data consumers (any callable functor will do). He can also listen for discarded messages.
+- By default (defined in `message_throttler_commons.hpp`) throttler uses chrono for timestamping. This behavior can be overwritten with any custom clock.
 - Calling the throttler's `from` method hashes the clientId only once. Map lookup is also performed only once, even if given client has not been registered yet.
-
-By default (defined in message_throttler_commons.hpp) throttler uses chrono for timestamping messages. This behavior can be overwritten with any custom clock.
 
 This is a header only component. Apart from standard libs, it depends on boost's circular_buffer.
